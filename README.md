@@ -3,7 +3,7 @@
 
 다음을 중점적으로 테스트한다\
 \
-task 
-taskEither
-Either
-Option
+* task 
+* taskEither
+* Either
+* Option
