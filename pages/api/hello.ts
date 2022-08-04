@@ -34,7 +34,7 @@ export default function handler(
   }
 
   const doSuccessRes = (name : string ) => (randomVal : number) => {     
-    (randomVal < 0.5 )
+    (randomVal < 1 )
                       ? res.json({ 
                             isSuccess : true
                             ,msg : {
@@ -46,22 +46,6 @@ export default function handler(
                           , msg : 'err occured in pipeling'
                       })
   }
-
-  pipe(
-    req.query
-    , dtoType.decode
-    , fold(
-        doFailRes
-        , (query) => {
-              // flow(Math.random
-              //   , doSuccessRes(query.name))
-              pipe(null
-                  , Math.random
-                  , doSuccessRes(query.name)
-                  )
-        }
-    )
-  )        
 
   pipe(req.method
     , (method) => method === 'GET'
@@ -79,8 +63,9 @@ export default function handler(
             , (query) => {
                   // flow(Math.random
                   //   , doSuccessRes(query.name))
-                  pipe(null
-                      , Math.random
+                  pipe(
+                    null
+                    ,   Math.random
                       , doSuccessRes(query.name)
                       )
             }
